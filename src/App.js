@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import Header from './components/start/header.js';
-import Forms from './components/forms/forms';
+import ManageWork from './components/manage-works/manage-work';
 
 function App() {
   return (
     <div>
-      <Header></Header>
       <div className="container-fluid p-2">
         <div className="container">
-            <Forms></Forms>
+            <ManageWork></ManageWork>
         </div>
       </div>
     </div>

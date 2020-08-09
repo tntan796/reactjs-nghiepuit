@@ -1,0 +1,32 @@
+.form-work {
+    position: relative;
+    box-shadow: 0 0 5px gray;
+}
+
+.form-work .close {
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 20%;
+    right: 10px;
+}
+
+.form-work .title{
+    background: dodgerblue !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+}
+
+.form-work .content {
+    margin-top: 2rem;
+}
+
+.form-list {
+    box-shadow: 0 0 5px gray;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
