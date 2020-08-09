@@ -1,0 +1,26 @@
+.color-picker {
+    box-shadow: 0 0 5px gray;
+    padding: 5px;
+    height: 100px;
+}
+
+.color-picker ul li {
+    padding: 20px;
+    list-style: none;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.color-picker ul li:hover {
+    box-shadow: 0 0 3px black;
+    cursor: pointer;
+}
+
+.color-picker ul {
+    margin: 0;
+    padding: 0;
+}
+
+.color-picker ul li.active {
+    padding: 25px;
+}
