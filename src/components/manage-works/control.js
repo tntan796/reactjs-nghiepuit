@@ -3,9 +3,15 @@ class Control extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        search : ''
+        search : '',
+        sort: {
+          by: 'name',
+          value: 1
+        }
       }
     }
+
+
 
     toggleDisplayForm() {
       this.props.toggleDisplayForm();
@@ -28,6 +34,15 @@ class Control extends Component {
       this.props.handleSearch(this.state.search);
     }
     
+    handleSort = (by, value) => {
+      this.setState({
+        sort: {
+          by, value
+        }
+      })
+      this.props.handleSort(by, value);
+    }
+
     render() {
         return (
             <div className="row">
@@ -51,8 +66,12 @@ class Control extends Component {
                       Sắp xếp
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a className="dropdown-item" href="#">Tăng dần</a>
-                      <a className="dropdown-item" href="#">Giảm dần</a>
+                      <a className="dropdown-item" href="javascript:void(0)" onClick={() => this.handleSort('name', 1)}>
+                        Tăng dần <i class="fa fa-check" aria-hidden="true" hidden={this.state.sort.value == -1}></i>
+                      </a>
+                      <a className="dropdown-item" href="javascript:void(0)" onClick={() => this.handleSort('name', -1)}>
+                        Giảm dần<i class="fa fa-check" aria-hidden="true"  hidden={this.state.sort.value == 1}></i>
+                      </a>
                     </div>
                   </div>
                 </div>
