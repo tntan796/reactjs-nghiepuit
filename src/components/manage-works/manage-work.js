@@ -18,11 +18,7 @@ class ManageWork extends Component {
                     filterName: '',
                     filterStatus: -1
                 },
-                search: '',
-                sort: {
-                    by: 'name',
-                    value: 1
-                }
+                search: ''
             };
         } else {
             const works = [
@@ -130,17 +126,8 @@ class ManageWork extends Component {
         });
     }
 
-    handleSort = (by, value) => {
-        this.setState({
-            sort: {
-                by,
-                value
-            }
-        });
-    }
-
     render() {
-        let {isDisplayForm, works, itemEdit, filter, search, sort} = this.state;
+        let {isDisplayForm, works, itemEdit, filter, search} = this.state;
         if (filter) {
             if (filter.filterName) {
                 works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
@@ -157,17 +144,6 @@ class ManageWork extends Component {
             works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
         }
 
-        if (sort) {
-            works.sort((a, b) => {
-                if (a.name > b.name) {
-                    return sort.value;
-                } else if (a.name < b.name) {
-                    return -sort.value;
-                } else {
-                    return 0;
-                }
-            })
-        }
         const elmForm = this.state.isDisplayForm ? 
                             <FormControl
                                 handleSave={this.handleSave}
@@ -189,7 +165,6 @@ class ManageWork extends Component {
                             <div className="col-sm-12">
                                 <Control toggleDisplayForm={this.toggleDisplayForm}
                                     handleSearch = {this.handleSearch}
-                                    handleSort = {this.handleSort}
                                 ></Control>
                             </div>
                             <div className="col-sm-12">
