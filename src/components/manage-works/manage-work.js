@@ -165,6 +165,7 @@ class ManageWork extends Component {
                             <div className="col-sm-12">
                                 <Control toggleDisplayForm={this.toggleDisplayForm}
                                     handleSearch = {this.handleSearch}
+                                    handleAdd = {this.handleAdd}
                                 ></Control>
                             </div>
                             <div className="col-sm-12">
