@@ -5,6 +5,8 @@ export const CONSTANTS = {
     FORM : {
         ADD: 'ADD',
         EDIT: 'EDIT',
-        TOGGLE_FORM: 'TOGGLE_FORM'
+        TOGGLE_FORM: 'TOGGLE_FORM',
+        CLOSE_FORM: 'CLOSE_FORM',
+        OPEN_FORM: 'OPEN_FORM'
     }
 }

@@ -3,6 +3,7 @@ import WorkListRedux from './work-list-redux';
 import FormControlRedux from './form-redux';
 import ControlRedux from './control-redux';
 import { v4 as uuidv4 } from 'uuid';
+import {connect} from 'react-redux';
 
 class ManageWorkRedux extends Component {
 
@@ -10,7 +11,6 @@ class ManageWorkRedux extends Component {
         super(props);
  
         this.state = {
-            isDisplayForm: false,
             itemEdit: null,
             filter: {
                 filterName: '',
@@ -18,44 +18,6 @@ class ManageWorkRedux extends Component {
             },
             search: ''
         };
-    }
-
-    toggleDisplayForm = () => {
-        this.setState({
-            isDisplayForm: !this.state.isDisplayForm,
-            itemEdit: null
-        });
-    }
-
-    showDisplayForm = () => {
-        this.setState({
-            isDisplayForm: true
-        });
-    }
-
-    closeDisplayForm = () => {
-        this.setState({
-            isDisplayForm: false,
-            itemEdit: null
-        });
-    }
-
-    handleSave = (data) => {
-        var {works} = this.state;
-        if (!data.id) {
-            data.id = uuidv4();
-            works.push(data);
-        } else {
-            let index = works.findIndex(t => t.id === data.id);
-            if (index != -1) {
-                works[index] = data;
-            }
-        }
-        this.setState({
-            works: works
-        });
-        localStorage.setItem('works', JSON.stringify(works));
-        this.closeDisplayForm();
     }
 
     toggleStatus = (id) => {
@@ -89,13 +51,6 @@ class ManageWorkRedux extends Component {
         });
     }
 
-    handleAdd = () => {
-        this.setState({
-            isDisplayForm: true,
-            itemEdit: null
-        });
-    }
-
     handleFilter = (filterName, filterStatus) => {
         this.setState({
             filter: {
@@ -112,7 +67,7 @@ class ManageWorkRedux extends Component {
     }
 
     render() {
-        let {isDisplayForm, itemEdit, filter, search} = this.state;
+        let {itemEdit, filter, search} = this.state;
         // if (filter) {
         //     if (filter.filterName) {
         //         works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
@@ -129,7 +84,7 @@ class ManageWorkRedux extends Component {
         //     works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
         // }
 
-        const elmForm = this.state.isDisplayForm ? 
+        const elmForm = this.props.isDisplayForm ? 
                             <FormControlRedux
                                 toggleDisplayForm={this.toggleDisplayForm}
                                 itemEdit = {itemEdit}
@@ -140,15 +95,14 @@ class ManageWorkRedux extends Component {
                     <h4>Quản lý công việc Redux</h4>
                 </div>
                 <div className="row col-sm-12">
-                    <div className={isDisplayForm ? 'col-sm-3 p-2 form-work' : ''}>
+                    <div className={this.props.isDisplayForm ? 'col-sm-3 p-2 form-work' : ''}>
                         {elmForm}
                     </div>
-                    <div className={isDisplayForm ? 'col-sm-9 p-2 form-work' : 'col-sm-12 p-2 form-list'}>
+                    <div className={this.props.isDisplayForm ? 'col-sm-9 p-2 form-work' : 'col-sm-12 p-2 form-list'}>
                         <div className="row">
                             <div className="col-sm-12">
                                 <ControlRedux toggleDisplayForm={this.toggleDisplayForm}
                                     handleSearch = {this.handleSearch}
-                                    handleAdd = {this.handleAdd}
                                 ></ControlRedux>
                             </div>
                             <div className="col-sm-12">
@@ -167,4 +121,16 @@ class ManageWorkRedux extends Component {
     }
 }
 
-export default ManageWorkRedux;
+const mapStateToProps = (state, props) => {
+    return {
+        isDisplayForm: state.isDisplayForm
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageWorkRedux);

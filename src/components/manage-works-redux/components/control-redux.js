@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect} from 'react-redux';
+import * as formActions from '../actions/form-redux.action';
 class ControlRedux extends Component {
     constructor(props) {
       super(props);
@@ -10,10 +11,6 @@ class ControlRedux extends Component {
 
     toggleDisplayForm() {
       this.props.toggleDisplayForm();
-    }
-
-    handleAdd() {
-      this.props.handleAdd();
     }
 
     handleChange = (event) => {
@@ -32,7 +29,7 @@ class ControlRedux extends Component {
         return (
             <div className="row">
                 <div className="col-sm-12 form-group">
-                    <button className="btn btn-primary" onClick={() => this.handleAdd()}>
+                    <button className="btn btn-primary" onClick={() => this.props.openForm()}>
                     <i className="fas fa-plus"></i>Thêm công việc</button>
                 </div>
                 <div className="col-sm-6 form-group">
@@ -63,13 +60,15 @@ class ControlRedux extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    
+    isDisplayForm: state.isDisplayForm
   }
 } 
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    
+    openForm: () => {
+      dispatch(formActions.openForm())
+    },
   }
 }
 

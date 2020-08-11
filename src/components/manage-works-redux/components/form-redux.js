@@ -18,7 +18,6 @@ class FormControlRedux extends Component {
                 name: this.props.itemEdit.name,
                 status: this.props.itemEdit.status
             });
-            console.log(this.props.itemEdit);
         }
     }
 
@@ -58,7 +57,7 @@ class FormControlRedux extends Component {
             <div className="row">
                 <div className="col-sm-12 title">
                     <label>{this.state.id ? 'Sửa công việc' : 'Thêm công việc'}</label>
-                    <i className="fas fa-times close" onClick={() => this.toggleDisplayForm()}></i>
+                    <i className="fas fa-times close" onClick={() => this.props.closeForm()}></i>
                 </div>
                 <div className="col-sm-12 content">
                     <form>
@@ -103,6 +102,12 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         handleSave: (work) => {
             dispatch(formActions.addTask(work))
+        },
+        openForm: () => {
+            dispatch(formActions.openForm())
+        },
+        closeForm: () => {
+            dispatch(formActions.closeForm())
         }
     }
 }
