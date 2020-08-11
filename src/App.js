@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import ManageWork from './components/manage-works/manage-work';
+import ManageWorkRedux from './components/manage-works-redux/components/manage-work-redux';
 
 function App() {
   return (
     <div>
       <div className="container-fluid p-2">
         <div className="container">
-            <ManageWork></ManageWork>
+            <ManageWorkRedux></ManageWorkRedux>
         </div>
       </div>
     </div>
