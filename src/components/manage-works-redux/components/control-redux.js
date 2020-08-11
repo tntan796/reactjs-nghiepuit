@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect} from 'react-redux';
 class ControlRedux extends Component {
     constructor(props) {
       super(props);
@@ -60,4 +61,16 @@ class ControlRedux extends Component {
     }
 }
 
-export default ControlRedux;
+const mapStateToProps = (state, props) => {
+  return {
+    
+  }
+} 
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ControlRedux);

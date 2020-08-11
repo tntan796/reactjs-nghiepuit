@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect} from 'react-redux';
+import * as formActions from '../actions/form-redux.action';
 class FormControlRedux extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +44,7 @@ class FormControlRedux extends Component {
     handleChange = (e) => {
         var target = e.target;
         var name = target.name;
-        var value = target.type == 'checkbox' ? target.checked : target.value;
+        var value = target.type === 'checkbox' ? target.checked : target.value;
         if (name === 'status') {
             value = value === 'true' ? true : false;
         }
@@ -91,4 +93,18 @@ class FormControlRedux extends Component {
     }
 }
 
-export default FormControlRedux;
+const mapStateToProps = (state, props) => {
+    return {
+        itemEdit: state.itemEdit
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        handleSave: (work) => {
+            dispatch(formActions.addTask(work))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormControlRedux);

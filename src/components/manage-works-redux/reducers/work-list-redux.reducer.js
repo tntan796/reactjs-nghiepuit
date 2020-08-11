@@ -19,6 +19,18 @@ const workListReduxReducer = (state = initial, action) => {
     switch (action.type) {
         case CONSTANTS.WORK_LIST.LIST_ALL:
           return state;
+        case CONSTANTS.FORM.ADD:
+          if (!action.work.id) {
+            action.work.id = uuidv4();
+              state.push(action.work);
+          } else {
+              let index = state.findIndex(t => t.id === action.work.id);
+              if (index !== -1) {
+                state[index] = action.work;
+              }
+          }
+          localStorage.setItem('works', JSON.stringify(state));
+          return [...state];
         default:
           return state;
       }

@@ -8,31 +8,16 @@ class ManageWorkRedux extends Component {
 
     constructor(props) {
         super(props);
-        // localStorage.removeItem('works');
-        if (localStorage.getItem('works')) {
-            this.state = {
-                works : JSON.parse(localStorage.getItem('works')),
-                isDisplayForm: false,
-                itemEdit: null,
-                filter: {
-                    filterName: '',
-                    filterStatus: -1
-                },
-                search: ''
-            };
-        } else {
-            const works = [
-                { id: uuidv4(), name: 'Đi học', status: false},
-                { id: uuidv4(), name: 'Đi làm', status: false},
-                { id: uuidv4(), name: 'Shoping', status: true},
-                { id: uuidv4(), name: 'Đi ngủ', status: true},
-            ]
-            localStorage.setItem('works', JSON.stringify(works));
-            this.state = {
-                works: JSON.parse(localStorage.getItem('works')),
-                isDisplayForm: true
-            }
-        }
+ 
+        this.state = {
+            isDisplayForm: false,
+            itemEdit: null,
+            filter: {
+                filterName: '',
+                filterStatus: -1
+            },
+            search: ''
+        };
     }
 
     toggleDisplayForm = () => {
@@ -62,7 +47,7 @@ class ManageWorkRedux extends Component {
             works.push(data);
         } else {
             let index = works.findIndex(t => t.id === data.id);
-            if (index !== -1) {
+            if (index != -1) {
                 works[index] = data;
             }
         }
@@ -127,28 +112,26 @@ class ManageWorkRedux extends Component {
     }
 
     render() {
-        let {isDisplayForm, works, itemEdit, filter, search} = this.state;
-        if (filter) {
-            if (filter.filterName) {
-                works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
-            }
-            works = works.filter(work => {
-                if (filter.filterStatus === -1) {
-                    return work;
-                } else {
-                    return work.status === (filter.filterStatus === 1 ? true : false);
-                }
-            });
-        }
-        if (search) {
-            works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
-        }
+        let {isDisplayForm, itemEdit, filter, search} = this.state;
+        // if (filter) {
+        //     if (filter.filterName) {
+        //         works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
+        //     }
+        //     works = works.filter(work => {
+        //         if (filter.filterStatus === -1) {
+        //             return work;
+        //         } else {
+        //             return work.status === (filter.filterStatus === 1 ? true : false);
+        //         }
+        //     });
+        // }
+        // if (search) {
+        //     works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
+        // }
 
         const elmForm = this.state.isDisplayForm ? 
                             <FormControlRedux
-                                handleSave={this.handleSave}
                                 toggleDisplayForm={this.toggleDisplayForm}
-                                handleAdd = {this.handleAdd}
                                 itemEdit = {itemEdit}
                                 /> : '';
         return(
