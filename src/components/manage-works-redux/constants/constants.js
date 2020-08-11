@@ -1,6 +1,7 @@
 export const CONSTANTS = {
     WORK_LIST: {
-        LIST_ALL : 'LIST_ALL'
+        LIST_ALL : 'LIST_ALL',
+        CHANGE_STATUS: 'CHANGE_STATUS'
     },
     FORM : {
         ADD: 'ADD',

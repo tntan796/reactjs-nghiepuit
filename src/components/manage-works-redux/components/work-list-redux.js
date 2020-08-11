@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {changeStatus} from '../actions/work-list-redux.action';
 class WorkListRedux extends Component {
     constructor(props) {
       super(props);
@@ -14,10 +15,6 @@ class WorkListRedux extends Component {
 
     handleDelete(id) {
       this.props.handleDelete(id);
-    }
-
-    toggleStatus(id) {
-      this.props.toggleStatus(id);
     }
 
     handleChange = (event) => {
@@ -42,9 +39,9 @@ class WorkListRedux extends Component {
               <td className="text-center">
                 {
                   item.status ? <span className="badge badge-primary cursor-pointer"
-                  onClick={() => this.toggleStatus(item.id)}>Kích hoạt</span>
+                  onClick={() => this.props.changeStatus(item.id)}>Kích hoạt</span>
                   : <span className="badge badge-danger cursor-pointer"
-                  onClick={() => this.toggleStatus(item.id)}>Không kích hoạt</span>
+                  onClick={() => this.props.changeStatus(item.id)}>Không kích hoạt</span>
                 }
               </td>
               <td>
@@ -100,7 +97,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  // toggleTodo: id => dispatch(toggleTodo(id))
+  changeStatus: id => dispatch(changeStatus(id))
 })
 
 

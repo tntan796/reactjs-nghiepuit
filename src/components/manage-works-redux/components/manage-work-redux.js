@@ -20,18 +20,6 @@ class ManageWorkRedux extends Component {
         };
     }
 
-    toggleStatus = (id) => {
-        let {works} = this.state;
-        let work = works.find(t => t.id === id);
-        if (work) {
-            work.status = !work.status;
-        }
-        this.setState({
-            works
-        });
-        localStorage.setItem('works', JSON.stringify(works));
-    }
-
     handleDelete = (id) => {
         let {works} = this.state;
         let index = works.findIndex(t => t.id === id);
@@ -107,7 +95,6 @@ class ManageWorkRedux extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <WorkListRedux
-                                    toggleStatus = {this.toggleStatus}
                                     handleDelete = {this.handleDelete}
                                     handleEdit = {this.handleEdit}
                                     handleFilter = {this.handleFilter}

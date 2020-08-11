@@ -31,6 +31,15 @@ const workListReduxReducer = (state = initial, action) => {
           }
           localStorage.setItem('works', JSON.stringify(state));
           return [...state];
+        case CONSTANTS.WORK_LIST.CHANGE_STATUS:
+          let works = [...state];
+          let work = works.find(t => t.id === action.id);
+          if (work) {
+              work.status = !work.status;
+          }
+          localStorage.setItem('works', JSON.stringify([...works]));
+          state = works;
+          return [...state];
         default:
           return state;
       }

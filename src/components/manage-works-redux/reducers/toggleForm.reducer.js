@@ -8,7 +8,6 @@ const toggleFormReducer = (state = initial, action) => {
             state = !state;
             return !state;
         case CONSTANTS.FORM.OPEN_FORM :
-            console.log('vao day nay');
             state = true;
             return state;
         case CONSTANTS.FORM.CLOSE_FORM :
