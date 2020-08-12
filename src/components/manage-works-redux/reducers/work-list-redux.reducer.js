@@ -15,11 +15,13 @@ const workListReduxReducer = (state = initial, action) => {
   switch (action.type) {
     case CONSTANTS.WORK_LIST.LIST_ALL:
       return state;
+
     case CONSTANTS.FORM.ADD:
       action.work.id = uuidv4();
       state.push(action.work);
       localStorage.setItem(CONSTANTS.LOCAL_STORAGE.WORKS, JSON.stringify(state));
       return [...state];
+
     case CONSTANTS.FORM.EDIT:
       let index = state.findIndex(t => t.id === action.work.id);
       if (index !== -1) {
@@ -27,6 +29,7 @@ const workListReduxReducer = (state = initial, action) => {
         localStorage.setItem(CONSTANTS.LOCAL_STORAGE.WORKS, JSON.stringify(state));
       }
       return [...state];
+
     case CONSTANTS.WORK_LIST.CHANGE_STATUS:
       let works = [...state];
       let work = works.find(t => t.id === action.id);
@@ -36,6 +39,7 @@ const workListReduxReducer = (state = initial, action) => {
       localStorage.setItem(CONSTANTS.LOCAL_STORAGE.WORKS, JSON.stringify([...works]));
       state = works;
       return [...state];
+
     case CONSTANTS.WORK_LIST.DELETE_WORK:
       let indexDelete = state.findIndex(t => t.id === action.id);
       if (indexDelete !== -1) {

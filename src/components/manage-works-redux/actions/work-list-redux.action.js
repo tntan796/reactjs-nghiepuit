@@ -32,3 +32,11 @@ export const resetItemEdit = () => {
         type: CONSTANTS.WORK_LIST.RESET_UPDATE_WORK
     }
 }
+
+
+export const filterOnTable = (filter) => {
+    return {
+        type: CONSTANTS.WORK_LIST.FILTER_ON_TABLE,
+        filter
+    }
+}

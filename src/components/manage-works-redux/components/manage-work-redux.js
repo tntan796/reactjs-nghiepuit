@@ -10,29 +10,8 @@ class ManageWorkRedux extends Component {
         super(props);
  
         this.state = {
-            itemEdit: null,
-            filter: {
-                filterName: '',
-                filterStatus: -1
-            },
             search: ''
         };
-    }
-
-    handleEdit = (work) => {
-        this.showDisplayForm()
-        this.setState({
-            itemEdit: work
-        });
-    }
-
-    handleFilter = (filterName, filterStatus) => {
-        this.setState({
-            filter: {
-                filterName: filterName,
-                filterStatus: +filterStatus
-            }
-        })
     }
 
     handleSearch = (search) => {
@@ -42,22 +21,6 @@ class ManageWorkRedux extends Component {
     }
 
     render() {
-        // let {itemEdit, filter, search} = this.state;
-        // if (filter) {
-        //     if (filter.filterName) {
-        //         works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
-        //     }
-        //     works = works.filter(work => {
-        //         if (filter.filterStatus === -1) {
-        //             return work;
-        //         } else {
-        //             return work.status === (filter.filterStatus === 1 ? true : false);
-        //         }
-        //     });
-        // }
-        // if (search) {
-        //     works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
-        // }
         return(
             <div className="row">
                 <div className="col-sm-12 text-center">
@@ -76,8 +39,6 @@ class ManageWorkRedux extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <WorkListRedux
-                                    handleEdit = {this.handleEdit}
-                                    handleFilter = {this.handleFilter}
                                 ></WorkListRedux>
                             </div>
                         </div>
@@ -90,13 +51,11 @@ class ManageWorkRedux extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        isDisplayForm: state.isDisplayForm
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
     }
 }
 

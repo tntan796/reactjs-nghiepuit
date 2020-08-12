@@ -4,7 +4,8 @@ export const CONSTANTS = {
         CHANGE_STATUS: 'CHANGE_STATUS',
         DELETE_WORK: 'DELETE WORK',
         UPDATE_WORK: 'UPDATE WORK',
-        RESET_UPDATE_WORK: 'reset update work'
+        RESET_UPDATE_WORK: 'reset update work',
+        FILTER_ON_TABLE: 'filter on table'
     },
     FORM : {
         ADD: 'ADD',

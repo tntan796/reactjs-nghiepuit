@@ -21,17 +21,26 @@ class WorkListRedux extends Component {
       let target = event.target;
       let name = target.name;
       let value = target.value;
-      this.props.handleFilter(
-        name === 'filterName' ? value : this.state.filterName,
-        name === 'filterStatus' ? value : this.state.filterStatus
+      this.props.handleFilter({
+        filterName: name === 'filterName' ? value : this.props.filter.filterName,
+        filterStatus: name === 'filterStatus' ? +value : +this.props.filter.filterStatus}
       );
-      this.setState({
-        [name]: value
-      });
     }
 
     render() {
         let {works} = this.props;
+        if (this.props.filter) {
+          if (this.props.filter.filterName) {
+            works = works.filter(work => work.name.toLowerCase().includes(this.props.filter.filterName.toLowerCase()));
+          }
+          works = works.filter(work => {
+            if (this.props.filter.filterStatus === -1) {
+              return work;
+            } else {
+              return work.status === (this.props.filter.filterStatus === 1 ? true : false);
+            }
+          });
+        }
         const elmWorkList = works.map((item, index) => {
             return (<tr key={item.id}>
               <th scope="row">{index}</th>
@@ -69,11 +78,11 @@ class WorkListRedux extends Component {
                   <tr>
                     <td></td>
                     <td><input className="form-control" name="filterName"
-                      value={this.state.filterName}
+                      value={this.props.filterName}
                       onChange={this.handleChange}/></td>
                     <td>
                         <select className="form-control" name="filterStatus"
-                        value={this.state.filterStatus}
+                        value={this.props.filterStatus}
                         onChange={this.handleChange}>
                         <option value={-1}>Tất cả</option>
                         <option value={0}>Khóa</option>
@@ -92,6 +101,7 @@ class WorkListRedux extends Component {
 const mapStateToProps = state => {
   return {
     works : state.works,
+    filter: state.filter
   }
 }
 
@@ -99,7 +109,8 @@ const mapDispatchToProps = dispatch => ({
   changeStatus: id => dispatch(workListActions.changeStatus(id)),
   handleDelete: (id) => dispatch(workListActions.deleteWork(id)),
   handleEdit: (item) => dispatch(workListActions.updateWork(item)),
-  openForm: () => dispatch(formActions.openForm())
+  openForm: () => dispatch(formActions.openForm()),
+  handleFilter: (filter) => dispatch(workListActions.filterOnTable(filter))
 })
 
 
