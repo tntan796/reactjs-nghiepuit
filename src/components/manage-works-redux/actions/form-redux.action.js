@@ -1,8 +1,15 @@
 import { CONSTANTS } from "../constants/constants"
 
-export const addTask = (work) => {
+export const addWork = (work) => {
     return {
         type: CONSTANTS.FORM.ADD,
+        work
+    }
+};
+
+export const editWork = (work) => {
+    return {
+        type: CONSTANTS.FORM.EDIT,
         work
     }
 };

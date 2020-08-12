@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect} from 'react-redux';
 import * as formActions from '../actions/form-redux.action';
+import {resetItemEdit} from '../actions/work-list-redux.action';
 class ControlRedux extends Component {
     constructor(props) {
       super(props);
@@ -25,11 +26,16 @@ class ControlRedux extends Component {
     handleSearch = () => {
       this.props.handleSearch(this.state.search);
     }
+
+    openFormAdd() {
+      this.props.resetUpdateItem();
+      this.props.openForm();
+    }
     render() {
         return (
             <div className="row">
                 <div className="col-sm-12 form-group">
-                    <button className="btn btn-primary" onClick={() => this.props.openForm()}>
+                    <button className="btn btn-primary" onClick={() => this.openFormAdd()}>
                     <i className="fas fa-plus"></i>Thêm công việc</button>
                 </div>
                 <div className="col-sm-6 form-group">
@@ -69,6 +75,9 @@ const mapDispatchToProps = (dispatch, props) => {
     openForm: () => {
       dispatch(formActions.openForm())
     },
+    resetUpdateItem: () => {
+      dispatch(resetItemEdit())
+    }
   }
 }
 

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {changeStatus} from '../actions/work-list-redux.action';
+import * as workListActions from '../actions/work-list-redux.action';
+import * as formActions from '../actions/form-redux.action';
+
 class WorkListRedux extends Component {
     constructor(props) {
       super(props);
@@ -9,12 +11,10 @@ class WorkListRedux extends Component {
         filterStatus: -1 // all: -1, deactive: 0, active: 1
       }
     }
+
     handleEdit(work) {
       this.props.handleEdit(work);
-    }
-
-    handleDelete(id) {
-      this.props.handleDelete(id);
+      this.props.openForm();
     }
 
     handleChange = (event) => {
@@ -48,7 +48,7 @@ class WorkListRedux extends Component {
                 <button className="btn btn-primary" onClick={() => this.handleEdit(item)}>
                   <i className="fas fa-edit"></i>
                 </button>
-                <button className="btn btn-danger" onClick={() => this.handleDelete(item.id)}>
+                <button className="btn btn-danger" onClick={() => this.props.handleDelete(item.id)}>
                   <i className="fas fa-trash-alt"></i>
                 </button>
               </td>
@@ -74,8 +74,7 @@ class WorkListRedux extends Component {
                     <td>
                         <select className="form-control" name="filterStatus"
                         value={this.state.filterStatus}
-                        onChange={this.handleChange}
-                        >
+                        onChange={this.handleChange}>
                         <option value={-1}>Tất cả</option>
                         <option value={0}>Khóa</option>
                         <option value={1}>Kích hoạt</option>
@@ -92,12 +91,15 @@ class WorkListRedux extends Component {
 
 const mapStateToProps = state => {
   return {
-    works : state.works
+    works : state.works,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  changeStatus: id => dispatch(changeStatus(id))
+  changeStatus: id => dispatch(workListActions.changeStatus(id)),
+  handleDelete: (id) => dispatch(workListActions.deleteWork(id)),
+  handleEdit: (item) => dispatch(workListActions.updateWork(item)),
+  openForm: () => dispatch(formActions.openForm())
 })
 
 

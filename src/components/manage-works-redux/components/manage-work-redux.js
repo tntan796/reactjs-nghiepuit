@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import WorkListRedux from './work-list-redux';
 import FormControlRedux from './form-redux';
 import ControlRedux from './control-redux';
-import { v4 as uuidv4 } from 'uuid';
 import {connect} from 'react-redux';
 
 class ManageWorkRedux extends Component {
@@ -18,18 +17,6 @@ class ManageWorkRedux extends Component {
             },
             search: ''
         };
-    }
-
-    handleDelete = (id) => {
-        let {works} = this.state;
-        let index = works.findIndex(t => t.id === id);
-        if (index !== -1) {
-            works.splice(index, 1);
-        }
-        this.setState({
-            works
-        });
-        localStorage.setItem('works', JSON.stringify(works));
     }
 
     handleEdit = (work) => {
@@ -55,7 +42,7 @@ class ManageWorkRedux extends Component {
     }
 
     render() {
-        let {itemEdit, filter, search} = this.state;
+        // let {itemEdit, filter, search} = this.state;
         // if (filter) {
         //     if (filter.filterName) {
         //         works = works.filter(work => work.name.toLowerCase().includes(filter.filterName.toLowerCase()));
@@ -71,12 +58,6 @@ class ManageWorkRedux extends Component {
         // if (search) {
         //     works = works.filter(work => work.name.toLowerCase().includes(search.toLowerCase()));
         // }
-
-        const elmForm = this.props.isDisplayForm ? 
-                            <FormControlRedux
-                                toggleDisplayForm={this.toggleDisplayForm}
-                                itemEdit = {itemEdit}
-                                /> : '';
         return(
             <div className="row">
                 <div className="col-sm-12 text-center">
@@ -84,7 +65,7 @@ class ManageWorkRedux extends Component {
                 </div>
                 <div className="row col-sm-12">
                     <div className={this.props.isDisplayForm ? 'col-sm-3 p-2 form-work' : ''}>
-                        {elmForm}
+                    <FormControlRedux/>
                     </div>
                     <div className={this.props.isDisplayForm ? 'col-sm-9 p-2 form-work' : 'col-sm-12 p-2 form-list'}>
                         <div className="row">
@@ -95,7 +76,6 @@ class ManageWorkRedux extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <WorkListRedux
-                                    handleDelete = {this.handleDelete}
                                     handleEdit = {this.handleEdit}
                                     handleFilter = {this.handleFilter}
                                 ></WorkListRedux>
