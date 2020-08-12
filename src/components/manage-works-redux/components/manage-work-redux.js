@@ -5,21 +5,6 @@ import ControlRedux from './control-redux';
 import {connect} from 'react-redux';
 
 class ManageWorkRedux extends Component {
-
-    constructor(props) {
-        super(props);
- 
-        this.state = {
-            search: ''
-        };
-    }
-
-    handleSearch = (search) => {
-        this.setState({
-            search
-        });
-    }
-
     render() {
         return(
             <div className="row">
@@ -33,13 +18,10 @@ class ManageWorkRedux extends Component {
                     <div className={this.props.isDisplayForm ? 'col-sm-9 p-2 form-work' : 'col-sm-12 p-2 form-list'}>
                         <div className="row">
                             <div className="col-sm-12">
-                                <ControlRedux toggleDisplayForm={this.toggleDisplayForm}
-                                    handleSearch = {this.handleSearch}
-                                ></ControlRedux>
+                                <ControlRedux toggleDisplayForm={this.toggleDisplayForm}></ControlRedux>
                             </div>
                             <div className="col-sm-12">
-                                <WorkListRedux
-                                ></WorkListRedux>
+                                <WorkListRedux></WorkListRedux>
                             </div>
                         </div>
                     </div>
@@ -51,6 +33,7 @@ class ManageWorkRedux extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
+        isDisplayForm: state.isDisplayForm
     }
 }
 

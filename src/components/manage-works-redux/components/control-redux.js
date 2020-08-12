@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect} from 'react-redux';
 import * as formActions from '../actions/form-redux.action';
 import {resetItemEdit} from '../actions/work-list-redux.action';
+import {searchAction} from '../actions/control.action';
 class ControlRedux extends Component {
     constructor(props) {
       super(props);
@@ -66,9 +67,8 @@ class ControlRedux extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    isDisplayForm: state.isDisplayForm
   }
-} 
+}
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
@@ -77,6 +77,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     resetUpdateItem: () => {
       dispatch(resetItemEdit())
+    },
+    handleSearch: (search) => {
+      dispatch(searchAction(search))
     }
   }
 }
