@@ -30,7 +30,6 @@ class FormControlRedux extends Component {
         event.preventDefault();
         if (this.state.id) {
             this.props.handleEdit(this.state);
-
         } else {
             this.props.handleAdd(this.state);
         }
@@ -79,7 +78,7 @@ class FormControlRedux extends Component {
                             </select>
                             </div>
                             <div className="col-sm-12 form-group text-center">
-                            <button className="btn btn-primary" onClick={() => this.handleSave()}>Lưu lại</button>
+                            <button className="btn btn-primary" onClick={this.handleSave}>Lưu lại</button>
                             <button className="btn btn-danger" onClick = {() => this.resetItemEdit()}>Hủy bỏ</button>
                             </div>
                         </div>
