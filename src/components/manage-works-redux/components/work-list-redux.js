@@ -37,6 +37,13 @@ class WorkListRedux extends Component {
     if (this.props.search) {
       works = works.filter(work => work.name.toLowerCase().includes(this.props.search.toLowerCase()));
     }
+    if (this.props.sort) {
+      works.sort((a, b) => {
+        if (a.name < b.name) return this.props.sort;
+        else if (a.name > b.name) return -this.props.sort;
+        else return 0;
+      })
+    }
     const elmWorkList = works.map((item, index) => {
       return (<tr key={item.id}>
         <th scope="row">{index}</th>
@@ -98,7 +105,8 @@ const mapStateToProps = state => {
   return {
     works: state.works,
     filter: state.filter,
-    search: state.search
+    search: state.search,
+    sort: state.sort
   }
 }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect} from 'react-redux';
 import * as formActions from '../actions/form-redux.action';
 import {resetItemEdit} from '../actions/work-list-redux.action';
-import {searchAction} from '../actions/control.action';
+import {searchAction, sortAction} from '../actions/control.action';
 class ControlRedux extends Component {
     constructor(props) {
       super(props);
@@ -55,8 +55,8 @@ class ControlRedux extends Component {
                       Sắp xếp
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a className="dropdown-item" href="#">Tăng dần</a>
-                      <a className="dropdown-item" href="#">Giảm dần</a>
+                      <a className="dropdown-item" href="#" onClick = {() => this.props.handleSort(1)}>Tăng dần</a>
+                      <a className="dropdown-item" href="#" onClick = {() => this.props.handleSort(-1)}>Giảm dần</a>
                     </div>
                   </div>
                 </div>
@@ -80,6 +80,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     handleSearch: (search) => {
       dispatch(searchAction(search))
+    },
+    handleSort: (sort) => {
+      dispatch(sortAction(sort))
     }
   }
 }

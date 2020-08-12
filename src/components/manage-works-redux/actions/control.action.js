@@ -6,3 +6,10 @@ export const searchAction = (search) => {
         search
     }
 }
+
+export const sortAction = (sort) => {
+    return {
+        type: CONSTANTS.CONTROL.SORT,
+        sort
+    }
+}

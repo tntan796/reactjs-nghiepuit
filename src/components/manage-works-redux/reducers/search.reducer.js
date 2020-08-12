@@ -2,7 +2,7 @@ import { CONSTANTS } from "../constants/constants";
 
 let initial = '';
 
-const SearchReducer = (state = initial, action) => {
+const searchReducer = (state = initial, action) => {
     switch (action.type) {
         case CONSTANTS.CONTROL.SEARCH:
             state = action.search;
@@ -12,4 +12,4 @@ const SearchReducer = (state = initial, action) => {
     }
 }
 
-export default SearchReducer;
+export default searchReducer;
