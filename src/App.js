@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-import ManageWorkRedux from './components/manage-works-redux/components/manage-work-redux';
+import ReactRouterComponent from './components/react-router/react-router';
 
 function App() {
   return (
     <div>
-      <div className="container-fluid p-2">
-        <div className="container">
-            <ManageWorkRedux></ManageWorkRedux>
-        </div>
-      </div>
+      <ReactRouterComponent></ReactRouterComponent>
     </div>
   );
 }
