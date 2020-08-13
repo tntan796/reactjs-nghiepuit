@@ -26,6 +26,9 @@ class MenuComponent extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/products">Product</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -46,6 +49,9 @@ class MenuComponent extends Component {
                             </li>
                             <li className="nav-item">
                                 <NavLink activeClassName="activeNavLink" className="nav-link" to="/about">About</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink activeClassName="activeNavLink" className="nav-link" to="/products">Product</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -71,7 +77,8 @@ class MenuComponent extends Component {
 const menus = [
     { label: 'Home', to: '/', exact: true },
     { label: 'Contact', to: '/contact', exact: false },
-    { label: 'About', to: '/about', exact: false }
+    { label: 'About', to: '/about', exact: false },
+    { label: 'Product', to: '/products', exact: false }
 ]
 
 const showMenus = (menus) => {
