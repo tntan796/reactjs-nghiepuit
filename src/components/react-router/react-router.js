@@ -8,6 +8,11 @@ import {
   } from "react-router-dom";
 import MenuComponent from './components/menu.component';
 class ReactRouterComponent extends Component {
+    constructor(props) {
+        super(props);
+        localStorage.removeItem('login');
+    }
+
     render() {
         return (
             <Router>
