@@ -8,7 +8,7 @@ class ConnectApiComponent extends Component {
             products: []
         };
 
-        fetch('http://localhost:3100/products')
+        fetch('https://tano-api.herokuapp.com/products')
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             this.setState({
@@ -25,7 +25,7 @@ class ConnectApiComponent extends Component {
 
         const elmProducts = products.map(product => {
             return (
-                <div className="col-sm-3">
+                <div className="col-sm-3" key={product.id}>
                     <div className="card p-2 m-1" style={{ width: '18rem' }}>
                         <img className="card-img-top" src={product.url} alt="Card image cap" />
                         <div className="card-body">
