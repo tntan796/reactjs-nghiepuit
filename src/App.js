@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ReactRouterComponent from './components/react-router/react-router';
+import ConnectApiComponent from './components/connect-api/connect-api';
 
 function App() {
   return (
     <div>
-      <ReactRouterComponent></ReactRouterComponent>
+      <ConnectApiComponent></ConnectApiComponent>
     </div>
   );
 }
