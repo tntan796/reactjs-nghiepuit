@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Route, Redirect} from 'react-router-dom';
 import ProductComponent from './product.component';
 const products = [
     {id: 1, image: 'https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-2-400x460.png', name: 'Iphone X', price: 1000000, slug: 'iphone',  description: 'iPhone X 64 GB là cụm từ được rất nhiều người mong chờ muốn biết và tìm kiếm trên Google bởi đây là chiếc điện thoại mà Apple kỉ niệm 10 năm iPhone đầu tiên được bán ra.'},
@@ -9,6 +9,7 @@ const products = [
 
 class ProductsComponent extends Component {
     match = this.props.match;
+
     showProducts = (products) => {
         return products.map((product, index) => {
             return (
@@ -25,8 +26,16 @@ class ProductsComponent extends Component {
     }
 
     render() {
+        var isLogin = localStorage.getItem('login');
+        if (!isLogin) {
+            return (
+                <Redirect to="/login" />
+            );
+        }
+
+        console.log('this.props.location:', this.props.location);
+
         var match = this.props.match;
-        console.log('products:', match);
         return (
             <div className="row">
                 {this.showProducts(products)}

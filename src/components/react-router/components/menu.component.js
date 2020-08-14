@@ -29,6 +29,9 @@ class MenuComponent extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/products">Product</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -52,6 +55,9 @@ class MenuComponent extends Component {
                             </li>
                             <li className="nav-item">
                                 <NavLink activeClassName="activeNavLink" className="nav-link" to="/products">Product</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink activeClassName="activeNavLink" className="nav-link" to="/login">Login</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -78,7 +84,8 @@ const menus = [
     { label: 'Home', to: '/', exact: true },
     { label: 'Contact', to: '/contact', exact: false },
     { label: 'About', to: '/about', exact: false },
-    { label: 'Product', to: '/products', exact: false }
+    { label: 'Product', to: '/products', exact: false },
+    { label: 'Login', to: '/login', exact: false }
 ]
 
 const showMenus = (menus) => {
@@ -87,7 +94,6 @@ const showMenus = (menus) => {
                 <CustomLink to={menu.to} key={index} label={menu.label} activeOnlyWhenExact={menu.exact}></CustomLink>
         );
     })
-    console.log(data);
     return data;
 }
 function CustomLink({ label, to, activeOnlyWhenExact }) {
