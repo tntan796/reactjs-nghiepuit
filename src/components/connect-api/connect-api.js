@@ -27,11 +27,14 @@ class ConnectApiComponent extends Component {
             return (
                 <div className="col-sm-3" key={product.id}>
                     <div className="card p-2 m-1" style={{ width: '18rem' }}>
-                        <img className="card-img-top" src={product.url} alt="Card image cap" />
+                        <img className="card-img-top" src={product.url} alt="Card image cap"/>
                         <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
                             <p className="card-text">{product.description}</p>
-                            <a href="#" className="btn btn-primary">Add to card</a>
+                            <div className="row col-sm-12 text-center">
+                                <button className="btn btn-primary w-50" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
+                                <button className="btn btn-danger w-50" alt="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
