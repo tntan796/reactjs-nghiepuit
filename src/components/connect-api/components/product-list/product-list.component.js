@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import ProductItemComponent from '../product-item/product-item.component';
 import { Link } from 'react-router-dom';
+import { connect} from 'react-redux';
+import callApi from '../../utils/apiCaller.utils';
 class ProductListComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            products: [],
-            loading: true
-        };
     }
 
     componentWillMount() {
-        fetch('https://tano-api.herokuapp.com/products')
-        .then((resp) => resp.json()) // Transform the data into json
-        .then((data) => {
-            this.setState({
-                products: data
-            });
-        }).catch(function (error) {
-            console.log(error);
-        });
+        callApi('products', 'GET', null).then(res => {
+            console.log('Data:', res);
+        })
     }
 
     render() {
-        const {products} = this.state;
+        const {products} = this.props;
         const elmProducts = products.map(product => {
             return (
                     <ProductItemComponent key={product.id} product={product}></ProductItemComponent>
@@ -46,4 +38,16 @@ class ProductListComponent extends Component {
     }
 }
 
-export default ProductListComponent;
+const mappingStateToProps = (state, props) => {
+    return {
+        products: state.products
+    }
+}
+
+const mappingDispatchToProps = (dispatch, props) => {
+    return {
+        
+    }
+}
+
+export default connect(mappingStateToProps, mappingDispatchToProps)(ProductListComponent);

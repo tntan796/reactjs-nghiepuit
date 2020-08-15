@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {createStore} from 'redux';
-import myReducer from './components/manage-works-redux/reducers/manage-work.reducer';
+// import myReducer from './components/manage-works-redux/reducers/manage-work.reducer';
 import { Provider } from 'react-redux';
-
-const store = createStore(myReducer);
+import connectApiReducer from './components/connect-api/reducers/connect-api.reducer';
+const store = createStore(connectApiReducer);
 
 ReactDOM.render(
   <React.StrictMode>
