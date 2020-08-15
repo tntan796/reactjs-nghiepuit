@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import ProductListComponent from './components/product-list/product-list.component';
-import HomeComponent from './components/home/home.component';
-import NotMatchComponent from './components/not-match/not-match.component';
+import routes from './routes';
+import './routes';
+import './connect-api.css';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    NavLink
 } from "react-router-dom";
 class ConnectApiComponent extends Component {
     render() {
@@ -21,11 +22,11 @@ class ConnectApiComponent extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
-                                <li className="nav-item active">
-                                    <Link className="nav-link" to="/">Home</Link>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/" exact activeClassName="link-active">Home</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/products">Product</Link>
+                                    <NavLink className="nav-link" to="/products" activeClassName="link-active">Product</NavLink>
                                 </li>
                             </ul>
                             <form className="form-inline my-2 my-lg-0">
@@ -34,22 +35,22 @@ class ConnectApiComponent extends Component {
                             </form>
                         </div>
                     </nav>
-                    <ProductListComponent></ProductListComponent>
                     <Switch>
-                        <Route exact path="/">
-                            <HomeComponent />
-                        </Route>
-                        <Route path="/products">
-                            <ProductListComponent />
-                        </Route>
-                        <Route path="*">
-                            <NotMatchComponent />
-                        </Route>
+                       {showContentMenu(routes)}
                     </Switch>
                 </div>
             </Router>
         );
     }
+}
+
+const showContentMenu = (routes) => {
+    return routes.map((item, index) => {
+        return (
+            <Route exact={item.exact} key={index} path={item.path} component={item.main}>
+            </Route>
+        );
+    })
 }
 
 export default ConnectApiComponent;
