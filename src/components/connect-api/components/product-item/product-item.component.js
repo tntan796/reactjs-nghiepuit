@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import callApi from '../../utils/apiCaller.utils';
-
+import * as actionProduct from '../../actions/product-list.action';
+import { connect} from 'react-redux';
 class ProductItemComponent extends Component {
 
     handleDelete = (id) => {
-        callApi(`products/delete/${id}`, 'DELETE', null).then(res => {
-        })
+        this.props.deleteProductItem(id);
     }
 
     render() {
@@ -36,5 +36,17 @@ class ProductItemComponent extends Component {
         );
     }
 }
+const mapStateToProps = (state, props) => {
+    return {
+    }
+}
 
-export default ProductItemComponent;
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        deleteProductItem : (id) => {
+            dispatch(actionProduct.deleteProductItemRequest(id))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItemComponent);

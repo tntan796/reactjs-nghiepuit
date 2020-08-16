@@ -9,9 +9,13 @@ const productListReducer = (state = initial, action) => {
             state = action.products;
             return state;
         case CONNECT_API_CONSTANTS.PRODUCT_LIST.DELETE:
-            return state;
+            let index = state.findIndex(product => product.id == action.id);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+            return [...state];
         case CONNECT_API_CONSTANTS.PRODUCT_LIST.ADD:
-            return state;
+            return [...state];
         default:
             return state;
     }

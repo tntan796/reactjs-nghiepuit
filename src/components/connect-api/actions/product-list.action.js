@@ -17,6 +17,13 @@ export const saveListToStore = (products) => {
     }
 }
 
+export const deleteProductItemRequest = (id) => {
+    return async (dispatch) => {
+        await callApi(`products/delete/${id}`, 'DELETE', null);
+        dispatch(deleteProductItem(id));
+    }
+}
+
 export const deleteProductItem = (id) => {
     return {
         type: CONNECT_API_CONSTANTS.PRODUCT_LIST.DELETE,

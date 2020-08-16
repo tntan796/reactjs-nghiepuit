@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './product-form.component.css';
-import {Redirect} from 'react-router-dom';
 import callApi from '../../utils/apiCaller.utils';
-
+import {connect} from 'react-redux';
+import * as actionProduct from '../../actions/product-list.action';
 class ProductFormComponent extends Component {
     constructor(props) {
         super(props);
@@ -88,4 +88,16 @@ class ProductFormComponent extends Component {
     }
 }
 
-export default ProductFormComponent;
+const mapStateToProps = (state, props) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+       
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductFormComponent);
