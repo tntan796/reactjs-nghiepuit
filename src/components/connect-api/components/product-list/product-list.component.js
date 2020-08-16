@@ -6,16 +6,22 @@ import callApi from '../../utils/apiCaller.utils';
 class ProductListComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            products: []
+        }
     }
 
     componentWillMount() {
         callApi('products', 'GET', null).then(res => {
-            console.log('Data:', res);
+            console.log(res);
+            this.setState({
+                products: res.data
+            });
         })
     }
 
     render() {
-        const {products} = this.props;
+        const {products} = this.state;
         const elmProducts = products.map(product => {
             return (
                     <ProductItemComponent key={product.id} product={product}></ProductItemComponent>

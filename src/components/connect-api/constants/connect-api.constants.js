@@ -3,7 +3,12 @@ const CONNECT_API_CONSTANTS = {
         GET : 'get product list'
     },
     CONFIG: {
-        BASE_API_URL: 'https://tano-api.herokuapp.com'
+        PRODUCT: {
+            BASE_API_URL: 'https://tano-api.herokuapp.com'
+        },
+        DEVELOP: {
+            BASE_API_URL: 'http://localhost:3100'
+        }
     }
 }
 

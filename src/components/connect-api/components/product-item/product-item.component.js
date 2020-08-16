@@ -9,8 +9,12 @@ class ProductItemComponent extends Component {
                 <div className="card p-2 m-1" style={{ width: '18rem' }}>
                     <img className="card-img-top" src={product.url} alt="Card image cap" />
                     <div className="card-body">
-                        <h5 className="card-title">{product.name}</h5>
-                        <p className="card-text">{product.description}</p>
+                        <h5 className="card-title">
+                        {product.name.length > 20 ? product.name.slice(0, 20) + '...' : product.name}
+                        </h5>
+                        <p className="card-text text-justify">
+                        {product.description.length > 150 ? product.description.slice(0, 150) + '...' : product.description}
+                        </p>
                         <div className="row col-sm-12 text-center">
                             <Link className="btn btn-primary w-50" alt="Edit" to={'/product/'+ product.id}>
                                 <i className="fa fa-pencil" aria-hidden="true"></i>Edit

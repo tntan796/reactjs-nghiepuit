@@ -1,0 +1,39 @@
+.form-product {
+    width: 400px;
+    border: 2px solid dodgerblue;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.form-product__title {
+    text-align: center;
+    background: dodgerblue;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding:5px
+}
+
+.form-product__content label {
+    color: dodgerblue;
+}
+
+.form-product__content input {
+    border: 1px solid rgb(72, 163, 255);
+    color: dodgerblue;
+}
+
+.form-product__content input:focus {
+    color: dodgerblue;
+}
+
+.form-product__content textarea {
+    border: 1px solid rgb(72, 163, 255);
+    color: dodgerblue;
+}
+
+.form-product__content textarea:focus {
+    color: dodgerblue;
+}
