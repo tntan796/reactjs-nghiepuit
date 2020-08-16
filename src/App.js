@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ConnectApiComponent from './components/connect-api/connect-api';
+import ManageCart from './components/manage-cart/manage-cart';
 
 function App() {
   return (
     <div>
-      <ConnectApiComponent></ConnectApiComponent>
+      <ManageCart></ManageCart>
     </div>
   );
 }
