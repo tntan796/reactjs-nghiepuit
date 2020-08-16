@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import callApi from '../../utils/apiCaller.utils';
 
 class ProductItemComponent extends Component {
+
+    handleDelete = (id) => {
+        callApi(`products/delete/${id}`, 'DELETE', null).then(res => {
+        })
+    }
+
     render() {
         const {product} = this.props;
         return (
@@ -19,7 +26,7 @@ class ProductItemComponent extends Component {
                             <Link className="btn btn-primary w-50" alt="Edit" to={'/product/'+ product.id}>
                                 <i className="fa fa-pencil" aria-hidden="true"></i>Edit
                             </Link>
-                            <button className="btn btn-danger w-50" alt="Delete">
+                            <button className="btn btn-danger w-50" alt="Delete" onClick={() => this.handleDelete(product.id)}>
                                 <i className="fa fa-trash" aria-hidden="true"></i>Delete
                             </button>
                         </div>

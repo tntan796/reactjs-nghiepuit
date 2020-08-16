@@ -1,6 +1,7 @@
 const CONNECT_API_CONSTANTS = {
     PRODUCT_LIST: {
-        GET : 'get product list'
+        GET : 'get product list',
+        DELETE: 'delete product item'
     },
     CONFIG: {
         PRODUCT: {
