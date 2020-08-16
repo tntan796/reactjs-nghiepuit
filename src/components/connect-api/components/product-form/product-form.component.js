@@ -21,8 +21,10 @@ class ProductFormComponent extends Component {
         }
     }
 
-    componentWillReceiveProps() {
-        this.setState(this.props.productEdit);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps && nextProps.productEdit) {
+            this.setState(this.props.productEdit);
+        }
     }
 
     handleOnChange = (event) => {
