@@ -45,9 +45,30 @@ export const addProductItem = (product) => {
     }
 }
 
+export const editProductItemRequest = (product) => {
+    return async(dispatch) => {
+        await  callApi('products/edit', 'POST', product);
+        dispatch(editProductItem(product));
+    }
+}
+
 export const editProductItem = (product) => {
     return {
         type: CONNECT_API_CONSTANTS.PRODUCT_LIST.EDIT,
+        product
+    }
+}
+
+export const getProductDetailRequest = (id) => {
+    return async (dispatch) => {
+        const product = await callApi(`products/${id}`, 'GET', null);
+        dispatch(getProductDetail(product.data));
+    }
+}
+
+export const getProductDetail = (product) => {
+    return {
+        type: CONNECT_API_CONSTANTS.PRODUCT.DETAIL,
         product
     }
 }

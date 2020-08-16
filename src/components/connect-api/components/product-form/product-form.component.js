@@ -17,15 +17,12 @@ class ProductFormComponent extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         if (id) {
-            this.setState({
-                id: id
-            })
-            callApi(`products/${id}`, 'GET', null).then(res => {
-                if (res) {
-                    this.setState(res.data);
-                }
-            })
+            this.props.getProductDetailRequest(id);
         }
+    }
+
+    componentWillReceiveProps() {
+        this.setState(this.props.productEdit);
     }
 
     handleOnChange = (event) => {
@@ -40,13 +37,11 @@ class ProductFormComponent extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.state.id) {
-            callApi('products/edit', 'POST', this.state).then(res => {
-                this.props.history.goBack();
-            })
+            this.props.editProduct(this.state);
+            this.props.history.goBack();
         } else {
             this.props.addProduct(this.state);
             this.props.history.goBack();
-
         }
     }
 
@@ -89,7 +84,7 @@ class ProductFormComponent extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-
+        productEdit: state.productEdit
     }
 }
 
@@ -97,6 +92,12 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
        addProduct: (product) => {
            dispatch(actionProduct.addProductItemRequest(product));
+       },
+       getProductDetailRequest: (id) => {
+           dispatch(actionProduct.getProductDetailRequest(id))
+       },
+       editProduct: (product) => {
+           dispatch(actionProduct.editProductItemRequest(product));
        }
     }
 }
