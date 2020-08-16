@@ -1,7 +1,10 @@
 const CONNECT_API_CONSTANTS = {
     PRODUCT_LIST: {
         GET : 'get product list',
-        DELETE: 'delete product item'
+        SAVE_TO_STORE: 'save product to store',
+        DELETE: 'delete product item',
+        ADD: 'add new product',
+        EDIT: 'update product'
     },
     CONFIG: {
         PRODUCT: {

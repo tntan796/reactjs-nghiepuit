@@ -2,26 +2,14 @@ import React, { Component } from 'react';
 import ProductItemComponent from '../product-item/product-item.component';
 import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
-import callApi from '../../utils/apiCaller.utils';
+import * as actionProducts from '../../actions/product-list.action';
 class ProductListComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: []
-        }
-    }
-
     componentWillMount() {
-        callApi('products', 'GET', null).then(res => {
-            console.log(res);
-            this.setState({
-                products: res.data
-            });
-        })
+        this.props.getAllProducts();
     }
 
     render() {
-        const {products} = this.state;
+        const {products} = this.props;
         const elmProducts = products.map(product => {
             return (
                     <ProductItemComponent key={product.id} product={product}></ProductItemComponent>
@@ -52,7 +40,9 @@ const mappingStateToProps = (state, props) => {
 
 const mappingDispatchToProps = (dispatch, props) => {
     return {
-        
+        getAllProducts : () => {
+            dispatch(actionProducts.getListAction());
+        }
     }
 }
 
