@@ -44,10 +44,9 @@ class ProductFormComponent extends Component {
                 this.props.history.goBack();
             })
         } else {
-            callApi('products/add', 'POST', this.state).then(res => {
-                this.props.history.goBack();
-                // this.props.history.push('/products');
-            })
+            this.props.addProduct(this.state);
+            this.props.history.goBack();
+
         }
     }
 
@@ -96,7 +95,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-       
+       addProduct: (product) => {
+           dispatch(actionProduct.addProductItemRequest(product));
+       }
     }
 }
 

@@ -31,6 +31,13 @@ export const deleteProductItem = (id) => {
     }
 }
 
+export const addProductItemRequest = (product) => {
+    return async (dispatch) => {
+        const productAdd = await callApi('products/add', 'POST', product);
+        dispatch(addProductItem(productAdd.data));
+    }
+}
+
 export const addProductItem = (product) => {
     return {
         type: CONNECT_API_CONSTANTS.PRODUCT_LIST.ADD,

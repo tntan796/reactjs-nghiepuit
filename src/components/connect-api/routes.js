@@ -6,7 +6,7 @@ import ProductFormComponent from './components/product-form/product-form.compone
 const routes = [
     {path: '/', exact: true, main: () => <HomeComponent/>},
     {path: '/products', exact: false, main: () => <ProductListComponent/>},
-    {path: '/product/add', exact: false, main: ({history}) => <ProductFormComponent history={history}/>},
+    {path: '/product/add', exact: false, main: ({match, history}) => <ProductFormComponent match={match} history={history}/>},
     {path: '/product/:id', exact: false, main: ({match, history}) => <ProductFormComponent match={match} history={history}/>},
     {path: '', exact: false, main: () => <NotMatchComponent/>},
 ]

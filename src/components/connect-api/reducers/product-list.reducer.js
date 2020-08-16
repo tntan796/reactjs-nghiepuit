@@ -15,6 +15,7 @@ const productListReducer = (state = initial, action) => {
             }
             return [...state];
         case CONNECT_API_CONSTANTS.PRODUCT_LIST.ADD:
+            state.push(action.product);
             return [...state];
         default:
             return state;
