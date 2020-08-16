@@ -5,7 +5,7 @@ let initial = [];
 
 const productListReducer = (state = initial, action) => {
     switch (action.type) {
-        case CONNECT_API_CONSTANTS.PRODUCT_LIST.GET:
+        case CONNECT_API_CONSTANTS.PRODUCT_LIST.SAVE_TO_STORE:
             state = action.products;
             return state;
         case CONNECT_API_CONSTANTS.PRODUCT_LIST.DELETE:
