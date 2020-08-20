@@ -1,0 +1,23 @@
+.work {
+    box-shadow: 0 0 5px gray;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    height: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.button-control {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.button-control .btn {
+    box-shadow: 0 0 5px gray;
+}
+
+.work_title {
+    text-align: center;
+}

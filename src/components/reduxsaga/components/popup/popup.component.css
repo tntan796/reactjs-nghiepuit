@@ -1,0 +1,46 @@
+.popup {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: rgba(104, 103, 103, 0.6);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup__content {
+    width: 45%;
+    box-shadow: 0 0 5px gray;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translateX(-50%) translateY(-50%);
+    background: white;
+    overflow: hidden;
+}
+
+.popup__title {
+    background: rgba(26, 138, 250, 0.9);
+    padding: 10px;
+    color: white;
+}
+
+.popup_form {
+    padding: 20px;
+}
+
+.block__title {
+    color: white;
+    background: dodgerblue;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: center;
+}

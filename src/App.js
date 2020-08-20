@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ManageCart from './components/manage-cart/manage-cart';
+import ReduxSagaComponent from './components/reduxsaga/components/redux-saga.component';
 
 function App() {
   return (
     <div>
-      <ManageCart></ManageCart>
+      <ReduxSagaComponent></ReduxSagaComponent>
     </div>
   );
 }

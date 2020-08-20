@@ -1,0 +1,16 @@
+  .btn-round {
+      border-radius: 100%;
+  }
+
+  .manage-work {
+      width: 100%;
+      height: 100%;
+      position: relative;
+  }
+
+  .btn-add {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      box-shadow: 0 0 5px gray;
+  }
