@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './popup.component.css';
+import { connect} from 'react-redux';
 class PopupComponent extends Component {
     render() {
         return (
@@ -10,11 +11,11 @@ class PopupComponent extends Component {
                     </div>
                     <div className="popup_form row">
                         <div className="col-sm-12 form-group">
-                            <label htmlFor>Name</label>
+                            <label>Name</label>
                             <input type="text" className="form-control" />
                         </div>
                         <div className="col-sm-12 form-group">
-                            <label htmlFor>Description</label>
+                            <label>Description</label>
                             <input type="text" className="form-control" />
                         </div>
                         <div className="col-sm-12 form-group text-right">
@@ -27,5 +28,6 @@ class PopupComponent extends Component {
         );
     }
 }
+
 
 export default PopupComponent;

@@ -6,10 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import {createStore, applyMiddleware} from 'redux';
 // import myReducer from './components/manage-works-redux/reducers/manage-work.reducer';
 import { Provider } from 'react-redux';
-import connectApiReducer from './components/connect-api/reducers/connect-api.reducer';
 import thunk from 'redux-thunk';
-const store = createStore(connectApiReducer, applyMiddleware(thunk));
-
+import reduxSagaReducer from './components/reduxsaga/reducers/reduxsaga.reducer';
+const store = createStore(reduxSagaReducer, applyMiddleware(thunk));
+console.log('store:', store.getState());
 ReactDOM.render(
   <React.StrictMode>
   <Provider store={store}>
