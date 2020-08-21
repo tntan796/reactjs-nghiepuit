@@ -3,17 +3,17 @@ import './task-list.component.css';
 import TaskItem from '../task-item/task-item.component';
 import PopupComponent from '../popup/popup.component';
 import { connect} from 'react-redux';
-import * as taskListAction from '../../actions/task-list.action';
 import * as popupAction from '../../actions/popup.action';
+import * as formAction from '../../actions/form.action';
 class TaskListComponent extends Component {
     componentDidMount() {
         // const list = this.props.getList();
         // console.log(list);
     }
-    
 
     handleAdd = () => {
         this.props.openDialog();
+        this.props.addTask();
     }
     render() {
         const taskList = this.props.taskList;
@@ -37,7 +37,7 @@ class TaskListComponent extends Component {
                 <div className="manage-work">
                     <div className="row">
                         <div className="col-sm-12">
-                            <button className="btn btn-primary btn-round btn-add" onClick={this.handleAdd()}>
+                            <button className="btn btn-primary btn-round btn-add" onClick={() => this.handleAdd()}>
                                 <i className="fas fa-plus" />
                             </button>
                         </div>
@@ -81,6 +81,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         openDialog : () => dispatch(popupAction.openPopup()),
         closeDialog : () => dispatch(popupAction.closePopup()),
+        addTask : () => {
+            dispatch(formAction.addTask())
+        }
     }
 }
 

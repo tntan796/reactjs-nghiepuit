@@ -1,4 +1,4 @@
-import { REDUX_SAGA_CONSTANTS } from "../consts/reduxsaga-constant";
+import REDUX_SAGA_CONSTANTS from "../consts/reduxsaga-constant";
 
 export const openPopup = () => {
     return {

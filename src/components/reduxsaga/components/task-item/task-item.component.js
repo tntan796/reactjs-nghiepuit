@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './task-item.component.css';
+import {connect} from 'react-redux';
+import * as formAction from '../../actions/form.action';
+import * as popupAction from '../../actions/popup.action';
+import * as taskListActions from '../../actions/task-list.action';
 class TaskItem extends Component {
     handleEdit = (task) => {
-        console.log('Edit:', task);
+        this.props.openPopup();
+        this.props.handleEdit(task);
     }
 
     handleDelete = (id) => {
-        console.log('Delete:', id);
+        this.props.handleDelete(id);
     }
     render() {
         return (
@@ -28,4 +33,24 @@ class TaskItem extends Component {
     }
 }
 
-export default TaskItem;
+const mapStateToProps = (state, props) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        handleEdit : (task) => {
+            dispatch(formAction.editTask(task))
+        },
+        handleDelete : (id) => {
+            dispatch(taskListActions.deleteTask(id))
+        },
+        openPopup: () => {
+            dispatch(popupAction.openPopup())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskItem);
