@@ -91,10 +91,10 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(popupActions.closePopup())
         },
         addTask: (task) => {
-            dispatch(taskListActions.addTask(task))
+            dispatch(taskListActions.addTaskRequest(task))
         },
         editTask: (task) => {
-            dispatch(taskListActions.editTask(task))
+            dispatch(taskListActions.editTaskRequest(task))
         }
     }
 }

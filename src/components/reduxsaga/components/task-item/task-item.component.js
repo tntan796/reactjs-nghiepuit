@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(formAction.editTask(task))
         },
         handleDelete : (id) => {
-            dispatch(taskListActions.deleteTask(id))
+            dispatch(taskListActions.deleteTaskRequest(id))
         },
         openPopup: () => {
             dispatch(popupAction.openPopup())

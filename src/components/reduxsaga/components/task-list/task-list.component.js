@@ -5,10 +5,10 @@ import PopupComponent from '../popup/popup.component';
 import { connect} from 'react-redux';
 import * as popupAction from '../../actions/popup.action';
 import * as formAction from '../../actions/form.action';
+import * as taskList from '../../actions/task-list.action';
 class TaskListComponent extends Component {
     componentDidMount() {
-        // const list = this.props.getList();
-        // console.log(list);
+        this.props.getTaskList();
     }
 
     handleAdd = () => {
@@ -79,6 +79,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        getTaskList: () => dispatch(taskList.getListRequest()),
         openDialog : () => dispatch(popupAction.openPopup()),
         closeDialog : () => dispatch(popupAction.closePopup()),
         addTask : () => {

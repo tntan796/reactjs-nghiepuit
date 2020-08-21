@@ -7,7 +7,6 @@ const formReducer = (state = initial, action) => {
             return { ...state };
         case REDUX_SAGA_CONSTANTS.FORM.ADD:
             state = {id: '', title: '', description: '', status: 1};
-            console.log('state form add:', state);
             return {...state};
         default:
             return { ...state };
