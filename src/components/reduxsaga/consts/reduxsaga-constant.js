@@ -14,6 +14,19 @@ const REDUX_SAGA_CONSTANTS = {
     FORM: {
         EDIT: 'edit task',
         ADD: 'add task'
+    },
+    MESSAGE: {
+        ALERT: {
+            ADD_SUCCESSFUL: 'Thêm mới thành công!',
+            ADD_FAIL: 'Thêm mới thất bại!',
+            UPDATE_SUCCESSFUL: 'Cập nhật thành công!',
+            UPDATE_FAIL: 'Cập nhật thất bại!',
+            DELETE_SUCCESS: 'Xóa thành công!',
+            DELETE_FAIL: 'Xóa thất bại!'
+        },
+        CONFIRM: {
+            DELETE: 'Bạn có chắc chắn muốn xóa?'
+        }
     }
 }
 
