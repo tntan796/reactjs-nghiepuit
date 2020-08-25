@@ -1,16 +1,29 @@
 import axios from 'axios';
-import CONNECT_API_CONSTANTS from '../constants/connect-api.constants';
-
-export default function callApi(endpoint, method = 'GET', body) {
-    let baseUrl = CONNECT_API_CONSTANTS.CONFIG.PRODUCT.BASE_API_URL;
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        baseUrl = CONNECT_API_CONSTANTS.CONFIG.DEVELOP.BASE_API_URL;;
+import CONNECT_API_CONSTANTS from '../consts/reduxsaga-constant';
+class ApiCaller {
+    baseUrl = '';
+    constructor() {
+        const instance = axios.create();
+        instance.interceptors.response.use(this.handleSuccess, this.handleError);
+        this.instance = instance;
+        this.baseUrl = CONNECT_API_CONSTANTS.CONFIG.PRODUCT.BASE_API_URL;
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            this.baseUrl = CONNECT_API_CONSTANTS.CONFIG.DEVELOP.BASE_API_URL;
+        }
     }
-    return axios({
-        method: method,
-        url: `${baseUrl}/${endpoint}`,
-        data: body
-    }).catch(error => {
-        console.log(error);
-    })
+    
+    handleSuccess(response) {
+        return response;
+    }
+
+    handleError(error) {
+        return error;
+    }
+ 
+
+    get(url) {
+        return this.instance.get(`${this.baseUrl}/${url}`);
+    }
 }
+
+export default new ApiCaller();

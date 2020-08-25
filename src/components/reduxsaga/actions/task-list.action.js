@@ -1,21 +1,36 @@
 import REDUX_SAGA_CONSTANTS from "../consts/reduxsaga-constant"
 import taskApiCaller from "../../connect-api/utils/apiCaller.utils"
 import { ToastMessage } from "../utils/toast-message.helper";
+import * as taskApi from '../services/manage-task.service';
 
-export const getListRequest = () => {
-    return (dispatch) => {
-        return taskApiCaller('tasks', 'GET', null).then(result => {
-            dispatch(getList(result.data));
-        }).catch(error => {
-            ToastMessage.error('Get list request fail!');
-        });
+export const resetListTask = () => {
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.RESET_LIST
     }
 }
 
-export const getList = (tasks) => {
+export const getListRequestSuccess = (tasks) => {
     return {
-        type: REDUX_SAGA_CONSTANTS.LIST.GET_LIST,
-        tasks
+        type: REDUX_SAGA_CONSTANTS.LIST.GET_LIST_SUCCESS,
+        payload: {tasks}
+    }
+}
+
+export const getListRequestFail = (error) => {
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.GET_LIST_FAIL,
+        payload: {error}
+    }
+}
+
+export const getListRequest = () => {
+    return (dispatch) => {
+        dispatch(resetListTask());
+        taskApi.fetchListTask().then(result => {
+            dispatch(getListRequestSuccess(result.data));
+        }).catch(error => {
+            dispatch(getListRequestFail(error));
+        })
     }
 }
 

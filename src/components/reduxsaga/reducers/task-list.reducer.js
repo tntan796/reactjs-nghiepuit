@@ -3,8 +3,14 @@ import REDUX_SAGA_CONSTANTS from '../consts/reduxsaga-constant';
 const initialState = [];
 const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case REDUX_SAGA_CONSTANTS.LIST.GET_LIST:
-            state = action.tasks;
+        case REDUX_SAGA_CONSTANTS.LIST.RESET_LIST:
+            state = initialState;
+            return [...state];
+        case REDUX_SAGA_CONSTANTS.LIST.GET_LIST_SUCCESS:
+            state = action.payload.tasks;
+            return [...state];
+        case REDUX_SAGA_CONSTANTS.LIST.GET_LIST_FAIL:
+            state = action.payload.tasks;
             return [...state];
         case REDUX_SAGA_CONSTANTS.LIST.ADD:
             action.task.id = state[state.length - 1].id + 1;

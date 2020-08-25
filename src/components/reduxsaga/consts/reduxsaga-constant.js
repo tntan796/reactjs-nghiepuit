@@ -1,6 +1,8 @@
 const REDUX_SAGA_CONSTANTS = {
     LIST : {
-        GET_LIST: 'get list',
+        RESET_LIST: 'reset list',
+        GET_LIST_SUCCESS: 'get list sucess',
+        GET_LIST_FAIL: 'get list fail',
         GET_LIST_BY_STATUS: 'get list by status',
         ADD: 'add item to list',
         EDIT: 'edit item to list',
@@ -26,6 +28,14 @@ const REDUX_SAGA_CONSTANTS = {
         },
         CONFIRM: {
             DELETE: 'Bạn có chắc chắn muốn xóa?'
+        }
+    },
+    CONFIG: {
+        PRODUCT: {
+            BASE_API_URL: 'https://tano-api.herokuapp.com'
+        },
+        DEVELOP: {
+            BASE_API_URL: 'http://localhost:3100'
         }
     }
 }
