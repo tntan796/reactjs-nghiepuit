@@ -10,11 +10,12 @@ const taskListReducer = (state = initialState, action) => {
             state = action.payload.tasks;
             return [...state];
         case REDUX_SAGA_CONSTANTS.LIST.GET_LIST_FAIL:
-            state = action.payload.tasks;
+            state = action.payload.error;
             return [...state];
-        case REDUX_SAGA_CONSTANTS.LIST.ADD:
-            action.task.id = state[state.length - 1].id + 1;
-            state.push(action.task);
+        case REDUX_SAGA_CONSTANTS.LIST.ADD_SUCCESS:
+            state.push(action.payload.task);
+            return [...state];
+        case REDUX_SAGA_CONSTANTS.LIST.ADD_FAIL:
             return [...state];
         case REDUX_SAGA_CONSTANTS.LIST.EDIT:
             let taskIndex = state.findIndex(t => t.id === action.task.id);

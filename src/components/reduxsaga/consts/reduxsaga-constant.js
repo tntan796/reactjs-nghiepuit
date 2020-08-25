@@ -1,10 +1,13 @@
 const REDUX_SAGA_CONSTANTS = {
     LIST : {
         RESET_LIST: 'reset list',
+        GET_LIST: 'get list',
         GET_LIST_SUCCESS: 'get list sucess',
         GET_LIST_FAIL: 'get list fail',
         GET_LIST_BY_STATUS: 'get list by status',
         ADD: 'add item to list',
+        ADD_SUCCESS: 'add item to list success',
+        ADD_FAIL: 'add item to list fail',
         EDIT: 'edit item to list',
         DELETE: 'delete item in list'
     },

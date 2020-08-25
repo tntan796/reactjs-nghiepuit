@@ -33,12 +33,14 @@ var taskListReducer = function taskListReducer() {
       return _toConsumableArray(state);
 
     case _reduxsagaConstant["default"].LIST.GET_LIST_FAIL:
-      state = action.payload.tasks;
+      state = action.payload.error;
       return _toConsumableArray(state);
 
-    case _reduxsagaConstant["default"].LIST.ADD:
-      action.task.id = state[state.length - 1].id + 1;
-      state.push(action.task);
+    case _reduxsagaConstant["default"].LIST.ADD_SUCCESS:
+      state.push(action.payload.task);
+      return _toConsumableArray(state);
+
+    case _reduxsagaConstant["default"].LIST.ADD_FAIL:
       return _toConsumableArray(state);
 
     case _reduxsagaConstant["default"].LIST.EDIT:

@@ -25,6 +25,7 @@ export const getListRequestFail = (error) => {
 
 export const getListRequest = () => {
     return (dispatch) => {
+        dispatch({type: REDUX_SAGA_CONSTANTS.LIST.GET_LIST});
         dispatch(resetListTask());
         taskApi.fetchListTask().then(result => {
             dispatch(getListRequestSuccess(result.data));
@@ -42,20 +43,32 @@ export const getListByStatus = (status) => {
 }
 
 export const addTaskRequest = (task) => {
-    return (dispatch) => {
-        taskApiCaller('tasks/add', 'POST', task).then(res => {
-            ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.ADD_SUCCESSFUL);
-            dispatch(addTask(task));
-        }).catch(error => {
-            ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.ADD_FAIL);
-        });
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.ADD,
+        payload: {
+            task
+        }
     }
 }
 
-export const addTask = (task) => {
+export const addTaskSuccess = (task) => {
+    ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.ADD_SUCCESSFUL);
     return {
-        type: REDUX_SAGA_CONSTANTS.LIST.ADD,
-        task
+        type: REDUX_SAGA_CONSTANTS.LIST.ADD_SUCCESS,
+        payload: {
+            task
+        }
+    }
+}
+
+export const addTaskFail = (error) => {
+    console.log('addTaskFail:', error);
+    ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.ADD_FAIL);
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.ADD_FAIL,
+        payload: {
+            error
+        }
     }
 }
 

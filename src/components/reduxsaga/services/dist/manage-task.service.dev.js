@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchListTask = void 0;
+exports.addTask = exports.fetchListTask = void 0;
 
 var _apiCaller = _interopRequireDefault(require("../utils/apiCaller"));
 
@@ -14,3 +14,9 @@ var fetchListTask = function fetchListTask() {
 };
 
 exports.fetchListTask = fetchListTask;
+
+var addTask = function addTask(task) {
+  return _apiCaller["default"].post('tasks/add', task);
+};
+
+exports.addTask = addTask;

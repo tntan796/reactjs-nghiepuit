@@ -24,6 +24,10 @@ class ApiCaller {
     get(url) {
         return this.instance.get(`${this.baseUrl}/${url}`);
     }
+
+    post(url, data) {
+        return this.instance.post(`${this.baseUrl}/${url}`, data);
+    }
 }
 
 export default new ApiCaller();
