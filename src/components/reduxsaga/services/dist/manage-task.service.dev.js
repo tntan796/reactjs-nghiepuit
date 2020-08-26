@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addTask = exports.fetchListTask = void 0;
+exports.editTask = exports.deleteTask = exports.addTask = exports.fetchListTask = void 0;
 
 var _apiCaller = _interopRequireDefault(require("../utils/apiCaller"));
 
@@ -20,3 +20,15 @@ var addTask = function addTask(task) {
 };
 
 exports.addTask = addTask;
+
+var deleteTask = function deleteTask(id) {
+  return _apiCaller["default"]["delete"]("tasks/delete/".concat(id));
+};
+
+exports.deleteTask = deleteTask;
+
+var editTask = function editTask(task) {
+  return _apiCaller["default"].post("tasks/edit", task);
+};
+
+exports.editTask = editTask;

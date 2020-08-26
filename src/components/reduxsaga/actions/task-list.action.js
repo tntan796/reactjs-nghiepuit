@@ -62,7 +62,6 @@ export const addTaskSuccess = (task) => {
 }
 
 export const addTaskFail = (error) => {
-    console.log('addTaskFail:', error);
     ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.ADD_FAIL);
     return {
         type: REDUX_SAGA_CONSTANTS.LIST.ADD_FAIL,
@@ -73,37 +72,48 @@ export const addTaskFail = (error) => {
 }
 
 export const editTaskRequest = (task) => {
-    return (dispatch) => {
-        taskApiCaller('tasks/edit' + task.id, 'POST', null).then(res => {
-            ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.UPDATE_SUCCESSFUL);
-            dispatch(editTask(res.data));
-        }).catch(error => {
-            ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.UPDATE_FAIL);
-        })
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.EDIT_REQUEST,
+        payload: {
+            task
+        }
     }
 }
 
-export const editTask = (task) => {
+export const editTaskSuccess = (task) => {
+    ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.UPDATE_SUCCESSFUL);
     return {
-        type: REDUX_SAGA_CONSTANTS.LIST.EDIT,
+        type: REDUX_SAGA_CONSTANTS.LIST.EDIT_SUCCESS,
         task
     }
 }
 
-export const deleteTaskRequest = (id) => {
-    return (dispatch) => {
-        taskApiCaller('tasks/delete/' + id, 'DELETE').then(res => {
-            ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.DELETE_SUCCESS);
-            dispatch(deleteTask(id));
-        }).catch(error => {
-            ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.DELETE_FAIL);
-        })
+
+export const editTaskFail = (error) => {
+    console.log('Delete Task Error:', error);
+    ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.UPDATE_FAIL);
+}
+
+export const deleteTaskRequest = (id) => {    
+    return {
+        type: REDUX_SAGA_CONSTANTS.LIST.DELETE,
+        payload: {
+            id
+        }
     }
 }
 
-export const deleteTask = (id) => {
+export const deleteTaskSuccess = (id) => {
+    ToastMessage.success(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.DELETE_SUCCESS);
     return {
-        type: REDUX_SAGA_CONSTANTS.LIST.DELETE,
-        id
+        type: REDUX_SAGA_CONSTANTS.LIST.DELETE_SUCCESS,
+        payload : {
+            id
+        }
     }
+}
+
+export const deleteTaskError = (error) => {
+    console.log('Delete Task Error:', error);
+    ToastMessage.error(REDUX_SAGA_CONSTANTS.MESSAGE.ALERT.DELETE_FAIL);
 }

@@ -29,6 +29,12 @@ regeneratorRuntime.mark(getListSaga),
 regeneratorRuntime.mark(addTask),
     _marked3 =
 /*#__PURE__*/
+regeneratorRuntime.mark(deleteTask),
+    _marked4 =
+/*#__PURE__*/
+regeneratorRuntime.mark(editTask),
+    _marked5 =
+/*#__PURE__*/
 regeneratorRuntime.mark(mySaga);
 
 function getListSaga() {
@@ -96,24 +102,102 @@ function addTask(_ref) {
   }, _marked2, null, [[1, 13]]);
 }
 
-function mySaga() {
-  return regeneratorRuntime.wrap(function mySaga$(_context3) {
+function deleteTask(_ref2) {
+  var payload, id;
+  return regeneratorRuntime.wrap(function deleteTask$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.next = 2;
-          return (0, _effects.takeLatest)(_reduxsagaConstant["default"].LIST.GET_LIST, getListSaga);
+          payload = _ref2.payload;
+          console.log('vao day');
+          _context3.prev = 2;
+          id = payload.id;
+          _context3.next = 6;
+          return (0, _effects.call)(taskApi.deleteTask, id);
 
-        case 2:
-          _context3.next = 4;
-          return (0, _effects.takeEvery)(_reduxsagaConstant["default"].LIST.ADD, addTask);
+        case 6:
+          _context3.next = 8;
+          return (0, _effects.put)(taskListAction.deleteTaskSuccess(id));
 
-        case 4:
+        case 8:
+          _context3.next = 15;
+          break;
+
+        case 10:
+          _context3.prev = 10;
+          _context3.t0 = _context3["catch"](2);
+          console.log(_context3.t0);
+          _context3.next = 15;
+          return (0, _effects.put)(taskListAction.deleteTaskError(_context3.t0));
+
+        case 15:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3);
+  }, _marked3, null, [[2, 10]]);
+}
+
+function editTask(_ref3) {
+  var payload, task;
+  return regeneratorRuntime.wrap(function editTask$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          payload = _ref3.payload;
+          _context4.prev = 1;
+          task = payload.task;
+          _context4.next = 5;
+          return (0, _effects.call)(taskApi.editTask, task);
+
+        case 5:
+          _context4.next = 7;
+          return (0, _effects.put)(taskListAction.editTaskSuccess(task));
+
+        case 7:
+          _context4.next = 13;
+          break;
+
+        case 9:
+          _context4.prev = 9;
+          _context4.t0 = _context4["catch"](1);
+          _context4.next = 13;
+          return (0, _effects.put)(taskListAction.editTaskFail(_context4.t0));
+
+        case 13:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, _marked4, null, [[1, 9]]);
+}
+
+function mySaga() {
+  return regeneratorRuntime.wrap(function mySaga$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return (0, _effects.takeLatest)(_reduxsagaConstant["default"].LIST.GET_LIST, getListSaga);
+
+        case 2:
+          _context5.next = 4;
+          return (0, _effects.takeEvery)(_reduxsagaConstant["default"].LIST.ADD, addTask);
+
+        case 4:
+          _context5.next = 6;
+          return (0, _effects.takeEvery)(_reduxsagaConstant["default"].LIST.DELETE, deleteTask);
+
+        case 6:
+          _context5.next = 8;
+          return (0, _effects.takeEvery)(_reduxsagaConstant["default"].LIST.EDIT_REQUEST, editTask);
+
+        case 8:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, _marked5);
 }
 
 var _default = mySaga;

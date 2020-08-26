@@ -8,8 +8,13 @@ const REDUX_SAGA_CONSTANTS = {
         ADD: 'add item to list',
         ADD_SUCCESS: 'add item to list success',
         ADD_FAIL: 'add item to list fail',
-        EDIT: 'edit item to list',
-        DELETE: 'delete item in list'
+        EDIT: 'edit item to list', 
+        EDIT_REQUEST: 'edit item to list request', 
+        EDIT_SUCCESS: 'edit item to list sucess',
+        EDIT_FAIL: 'edit item to list fail',
+        DELETE: 'delete item in list',
+        DELETE_SUCCESS: 'delete item in list success',
+        DELETE_FAIL: 'delete item in list fail',
     },
     POPUP: {
         OPEN: 'open popup',

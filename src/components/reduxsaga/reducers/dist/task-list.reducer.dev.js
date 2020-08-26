@@ -9,6 +9,12 @@ var _reduxsagaConstant = _interopRequireDefault(require("../consts/reduxsaga-con
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -40,10 +46,7 @@ var taskListReducer = function taskListReducer() {
       state.push(action.payload.task);
       return _toConsumableArray(state);
 
-    case _reduxsagaConstant["default"].LIST.ADD_FAIL:
-      return _toConsumableArray(state);
-
-    case _reduxsagaConstant["default"].LIST.EDIT:
+    case _reduxsagaConstant["default"].LIST.EDIT_SUCCESS:
       var taskIndex = state.findIndex(function (t) {
         return t.id === action.task.id;
       });
@@ -52,6 +55,7 @@ var taskListReducer = function taskListReducer() {
         state[taskIndex].title = action.task.title;
         state[taskIndex].description = action.task.description;
         state[taskIndex].status = action.task.status;
+        state[taskIndex] = _objectSpread({}, state[taskIndex]);
       }
 
       return _toConsumableArray(state);
@@ -61,9 +65,9 @@ var taskListReducer = function taskListReducer() {
         return t.status === action.status;
       }));
 
-    case _reduxsagaConstant["default"].LIST.DELETE:
+    case _reduxsagaConstant["default"].LIST.DELETE_SUCCESS:
       return _toConsumableArray(state.filter(function (t) {
-        return t.id !== action.id;
+        return t.id !== action.payload.id;
       }));
 
     default:

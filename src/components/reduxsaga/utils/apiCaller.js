@@ -28,6 +28,14 @@ class ApiCaller {
     post(url, data) {
         return this.instance.post(`${this.baseUrl}/${url}`, data);
     }
+
+    put(url, data) {
+        return this.instance.post(`${this.baseUrl}/${url}`, data);
+    }
+
+    delete(url) {
+        return this.instance.delete(`${this.baseUrl}/${url}`);
+    }
 }
 
 export default new ApiCaller();

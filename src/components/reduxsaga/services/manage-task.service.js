@@ -8,3 +8,11 @@ export const fetchListTask = () => {
 export const addTask = (task) => {
     return apiCaller.post('tasks/add', task);
 }
+
+export const deleteTask = (id) => {
+    return apiCaller.delete(`tasks/delete/${id}`);
+}
+
+export const editTask = (task) => {
+    return apiCaller.post(`tasks/edit`, task);
+}

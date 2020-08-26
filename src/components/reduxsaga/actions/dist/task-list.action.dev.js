@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteTask = exports.deleteTaskRequest = exports.editTask = exports.editTaskRequest = exports.addTaskFail = exports.addTaskSuccess = exports.addTaskRequest = exports.getListByStatus = exports.getListRequest = exports.getListRequestFail = exports.getListRequestSuccess = exports.resetListTask = void 0;
+exports.deleteTaskError = exports.deleteTaskSuccess = exports.deleteTaskRequest = exports.editTaskFail = exports.editTaskSuccess = exports.editTaskRequest = exports.addTaskFail = exports.addTaskSuccess = exports.addTaskRequest = exports.getListByStatus = exports.getListRequest = exports.getListRequestFail = exports.getListRequestSuccess = exports.resetListTask = void 0;
 
 var _reduxsagaConstant = _interopRequireDefault(require("../consts/reduxsaga-constant"));
 
@@ -101,8 +101,6 @@ var addTaskSuccess = function addTaskSuccess(task) {
 exports.addTaskSuccess = addTaskSuccess;
 
 var addTaskFail = function addTaskFail(error) {
-  console.log('addTaskFail:', error);
-
   _toastMessage.ToastMessage.error(_reduxsagaConstant["default"].MESSAGE.ALERT.ADD_FAIL);
 
   return {
@@ -116,47 +114,63 @@ var addTaskFail = function addTaskFail(error) {
 exports.addTaskFail = addTaskFail;
 
 var editTaskRequest = function editTaskRequest(task) {
-  return function (dispatch) {
-    (0, _apiCaller["default"])('tasks/edit' + task.id, 'POST', null).then(function (res) {
-      _toastMessage.ToastMessage.success(_reduxsagaConstant["default"].MESSAGE.ALERT.UPDATE_SUCCESSFUL);
-
-      dispatch(editTask(res.data));
-    })["catch"](function (error) {
-      _toastMessage.ToastMessage.error(_reduxsagaConstant["default"].MESSAGE.ALERT.UPDATE_FAIL);
-    });
+  return {
+    type: _reduxsagaConstant["default"].LIST.EDIT_REQUEST,
+    payload: {
+      task: task
+    }
   };
 };
 
 exports.editTaskRequest = editTaskRequest;
 
-var editTask = function editTask(task) {
+var editTaskSuccess = function editTaskSuccess(task) {
+  _toastMessage.ToastMessage.success(_reduxsagaConstant["default"].MESSAGE.ALERT.UPDATE_SUCCESSFUL);
+
   return {
-    type: _reduxsagaConstant["default"].LIST.EDIT,
+    type: _reduxsagaConstant["default"].LIST.EDIT_SUCCESS,
     task: task
   };
 };
 
-exports.editTask = editTask;
+exports.editTaskSuccess = editTaskSuccess;
+
+var editTaskFail = function editTaskFail(error) {
+  console.log('Delete Task Error:', error);
+
+  _toastMessage.ToastMessage.error(_reduxsagaConstant["default"].MESSAGE.ALERT.UPDATE_FAIL);
+};
+
+exports.editTaskFail = editTaskFail;
 
 var deleteTaskRequest = function deleteTaskRequest(id) {
-  return function (dispatch) {
-    (0, _apiCaller["default"])('tasks/delete/' + id, 'DELETE').then(function (res) {
-      _toastMessage.ToastMessage.success(_reduxsagaConstant["default"].MESSAGE.ALERT.DELETE_SUCCESS);
-
-      dispatch(deleteTask(id));
-    })["catch"](function (error) {
-      _toastMessage.ToastMessage.success(_reduxsagaConstant["default"].MESSAGE.ALERT.DELETE_FAIL);
-    });
+  return {
+    type: _reduxsagaConstant["default"].LIST.DELETE,
+    payload: {
+      id: id
+    }
   };
 };
 
 exports.deleteTaskRequest = deleteTaskRequest;
 
-var deleteTask = function deleteTask(id) {
+var deleteTaskSuccess = function deleteTaskSuccess(id) {
+  _toastMessage.ToastMessage.success(_reduxsagaConstant["default"].MESSAGE.ALERT.DELETE_SUCCESS);
+
   return {
-    type: _reduxsagaConstant["default"].LIST.DELETE,
-    id: id
+    type: _reduxsagaConstant["default"].LIST.DELETE_SUCCESS,
+    payload: {
+      id: id
+    }
   };
 };
 
-exports.deleteTask = deleteTask;
+exports.deleteTaskSuccess = deleteTaskSuccess;
+
+var deleteTaskError = function deleteTaskError(error) {
+  console.log('Delete Task Error:', error);
+
+  _toastMessage.ToastMessage.error(_reduxsagaConstant["default"].MESSAGE.ALERT.DELETE_FAIL);
+};
+
+exports.deleteTaskError = deleteTaskError;
